@@ -110,6 +110,11 @@ class _MainPageState extends State<MainPage> {
                         child: ItemCard(
                           item: item,
                           time: '$index일전',
+                          typeItems: viewModel.productList
+                              .where((element) =>
+                                  element.type == item.type &&
+                                  element.itemId != item.itemId)
+                              .toList(),
                         ),
                       );
                     },
@@ -125,11 +130,16 @@ class _MainPageState extends State<MainPage> {
 }
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({Key? key, required this.item, required this.time})
+  const ItemCard(
+      {Key? key,
+      required this.item,
+      required this.time,
+      required this.typeItems})
       : super(key: key);
 
   final Product item;
   final String time;
+  final List<Product> typeItems;
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +148,11 @@ class ItemCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ProductInfoPage(item: item, time: time)),
+              builder: (context) => ProductInfoPage(
+                    item: item,
+                    time: time,
+                    typeItem: typeItems,
+                  )),
         );
       },
       child: Card(

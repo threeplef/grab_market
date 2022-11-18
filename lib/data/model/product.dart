@@ -12,6 +12,7 @@ class Product with _$Product {
     required int price,
     required String seller,
     @Default("./assets/images/products/no_image.jpg") String imageUrl,
+    required String type,
   }) = _Product;
 
   factory Product.fromJson(Map<String, Object?> json) =>

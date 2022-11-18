@@ -14,6 +14,7 @@ _$_Product _$$_ProductFromJson(Map<String, dynamic> json) => _$_Product(
       seller: json['seller'] as String,
       imageUrl: json['imageUrl'] as String? ??
           "./assets/images/products/no_image.jpg",
+      type: json['type'] as String,
     );
 
 Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
       'price': instance.price,
       'seller': instance.seller,
       'imageUrl': instance.imageUrl,
+      'type': instance.type,
     };

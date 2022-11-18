@@ -28,6 +28,7 @@ mixin _$Product {
   int get price => throw _privateConstructorUsedError;
   String get seller => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $ProductCopyWith<$Res> {
       @JsonKey(name: 'item_name') String itemName,
       int price,
       String seller,
-      String imageUrl});
+      String imageUrl,
+      String type});
 }
 
 /// @nodoc
@@ -67,6 +69,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? price = null,
     Object? seller = null,
     Object? imageUrl = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       idx: null == idx
@@ -93,6 +96,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -110,7 +117,8 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       @JsonKey(name: 'item_name') String itemName,
       int price,
       String seller,
-      String imageUrl});
+      String imageUrl,
+      String type});
 }
 
 /// @nodoc
@@ -129,6 +137,7 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? price = null,
     Object? seller = null,
     Object? imageUrl = null,
+    Object? type = null,
   }) {
     return _then(_$_Product(
       idx: null == idx
@@ -155,6 +164,10 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -168,7 +181,8 @@ class _$_Product implements _Product {
       @JsonKey(name: 'item_name') required this.itemName,
       required this.price,
       required this.seller,
-      this.imageUrl = "./assets/images/products/no_image.jpg"});
+      this.imageUrl = "./assets/images/products/no_image.jpg",
+      required this.type});
 
   factory _$_Product.fromJson(Map<String, dynamic> json) =>
       _$$_ProductFromJson(json);
@@ -188,10 +202,12 @@ class _$_Product implements _Product {
   @override
   @JsonKey()
   final String imageUrl;
+  @override
+  final String type;
 
   @override
   String toString() {
-    return 'Product(idx: $idx, itemId: $itemId, itemName: $itemName, price: $price, seller: $seller, imageUrl: $imageUrl)';
+    return 'Product(idx: $idx, itemId: $itemId, itemName: $itemName, price: $price, seller: $seller, imageUrl: $imageUrl, type: $type)';
   }
 
   @override
@@ -206,13 +222,14 @@ class _$_Product implements _Product {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.seller, seller) || other.seller == seller) &&
             (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+                other.imageUrl == imageUrl) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, idx, itemId, itemName, price, seller, imageUrl);
+  int get hashCode => Object.hash(
+      runtimeType, idx, itemId, itemName, price, seller, imageUrl, type);
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +252,8 @@ abstract class _Product implements Product {
       @JsonKey(name: 'item_name') required final String itemName,
       required final int price,
       required final String seller,
-      final String imageUrl}) = _$_Product;
+      final String imageUrl,
+      required final String type}) = _$_Product;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
 
@@ -253,6 +271,8 @@ abstract class _Product implements Product {
   String get seller;
   @override
   String get imageUrl;
+  @override
+  String get type;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCopyWith<_$_Product> get copyWith =>

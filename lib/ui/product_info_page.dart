@@ -4,11 +4,16 @@ import '../data/model/product.dart';
 import 'main_page.dart';
 
 class ProductInfoPage extends StatelessWidget {
-  ProductInfoPage({Key? key, required this.item, required this.time})
+  ProductInfoPage(
+      {Key? key,
+      required this.item,
+      required this.time,
+      required this.typeItem})
       : super(key: key);
 
   Product item;
   final String time;
+  final List<Product> typeItem;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +49,7 @@ class ProductInfoPage extends StatelessWidget {
                 Center(
                     child: Image.asset(
                         item.imageUrl.isEmpty
-                            ? "assets/images/products/no_image.jpg"
+                            ? "./assets/images/products/no_image.jpg"
                             : item.imageUrl,
                         width: 300)),
                 const SizedBox(height: 10.0),
@@ -69,33 +74,22 @@ class ProductInfoPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 8.0),
-                  child: Text("상품 설명"),
-                ),
                 const Divider(),
                 const Text("추천 상품", style: TextStyle(fontSize: 25)),
                 SizedBox(
                   height: 310,
                   child: ListView.builder(
-                      itemCount: 3,
+                      itemCount: typeItem.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
-                        item = Product(
-                          idx: item.idx,
-                          itemId: item.itemId,
-                          itemName: item.itemName,
-                          price: item.price,
-                          seller: item.seller,
-                          imageUrl: item.imageUrl,
-                        );
+                        final product = typeItem[index];
                         return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ItemCard(
-                            item: item,
-                            time: time,
-                          ),
-                        );
+                            padding: const EdgeInsets.all(8.0),
+                            child: ItemCard(
+                              item: product,
+                              time: time,
+                              typeItems: typeItem,
+                            ));
                       }),
                 )
               ],
