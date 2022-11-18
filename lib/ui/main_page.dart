@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:grab_market/ui/create_product_page.dart';
 import 'package:provider/provider.dart';
 
 import '../data/model/product.dart';
@@ -46,7 +47,7 @@ class _MainPageState extends State<MainPage> {
                 child: CarouselSlider(
                   options: CarouselOptions(
                     height: 100,
-                    autoPlay: false,
+                    autoPlay: true,
                   ),
                   items: bannerItems.map((url) {
                     return Builder(
@@ -64,11 +65,35 @@ class _MainPageState extends State<MainPage> {
                   }).toList(),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(16.0, 8.0, 0, 8.0),
-                child: Text(
-                  "판매되는 상품들",
-                  style: TextStyle(fontSize: 20),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+                child: Row(
+                  children: [
+                    const Text(
+                      "판매되는 상품들",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    const Spacer(),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CreateProductPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: const Color(0xFF194050),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: const Text(
+                        "상품 등록",
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Center(
